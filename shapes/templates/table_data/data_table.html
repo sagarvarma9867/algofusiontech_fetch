@@ -1,0 +1,59 @@
+<!-- calculator/templates/calculator/data_table.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Data Table</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h1>Fetched Data</h1>
+
+    {% if error_message %}
+        <p style="color: red;">{{ error_message }}</p>
+    {% endif %}
+
+    <p><strong>Total Items:</strong> {{ count }}</p>
+
+    {% if items %}
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Shape_type</th>
+                <th>Localdisk</th>
+                <th>Subtype</th>
+                <th>ProcessorType</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in items %}
+            <tr>
+                <td>{{ item.id }}</td>
+                <td>{{ item.name }}</td>
+                <td>{{ item.shapeType.label }}</td>
+                <td>{{ item.localDisk }}</td>
+                <td>{{ item.subType.label }}</td>
+                <td>{{ item.processorType.label }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <p>No data available</p>
+    {% endif %}
+</body>
+</html>
